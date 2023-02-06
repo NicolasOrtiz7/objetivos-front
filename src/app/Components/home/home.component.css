@@ -1,0 +1,37 @@
+.btn {
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	bottom: 30px;
+	right: 30px;
+	letter-spacing: 1px;
+}
+
+.btn-2 {
+	background-color: #2A265F;
+	border: 0;
+	border-radius: 50px;
+	box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+	color: #fff;
+	font-size: 16px;
+	padding: 12px 25px;
+	/* position: absolute; */
+	bottom: 30px;
+	right: 30px;
+	letter-spacing: 1px;
+}
+
+.btn-aceptar{
+	background-color: #2A265F;
+
+}
+
+.btn-cerrar{
+	/* background-color: #2A265F; */
+	background-color: #fff;
+	color: #2A265F;
+	border: 1px solid #2A265F;
+}

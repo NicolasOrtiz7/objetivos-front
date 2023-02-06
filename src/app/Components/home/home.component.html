@@ -1,0 +1,188 @@
+
+
+<div class="container-fluid d-flex justify-content-center flex-wrap">
+  <div style="width: 100%; display: block">
+    <button type="button" class="btn btn-aceptar" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Nuevo objetivo
+    </button>
+    <br /><br />
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Nuevo objetivo
+            </h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form (ngSubmit)="saveObjetive()" enctype="multipart/form-data">
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Nombre:</label>
+                <input [(ngModel)]="objetive.name" type="text" class="form-control" id="name" name="name" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Descripción corta:</label>
+                <input [(ngModel)]="objetive.description" type="text" maxlength="156" class="form-control" id="description"
+                  name="description" />
+              </div>
+              <div class="mb-3" style="width: 100%; display: flex">
+                <div style="width: 50%; margin-right: 20px">
+                  <label for="recipient-name" class="col-form-label">Dinero actual:</label>
+                  <input [(ngModel)]="objetive.currentMoney" type="number" class="form-control" id="currentMoney"
+                    name="currentMoney" />
+                </div>
+                <div style="width: 50%">
+                  <label for="recipient-name" class="col-form-label">Meta de dinero:</label>
+                  <input [(ngModel)]="objetive.totalMoney" type="number" value="1" min="1" class="form-control" id="totalMoney"
+                    name="totalMoney" />
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Fecha límite:</label>
+                <input [(ngModel)]="objetive.endDate" type="date" class="form-control" id="endDate" name="endDate" />
+              </div>
+              <div class="mb-3">
+                <label for="recipient-name" class="col-form-label">Imagen:</label>
+                <input [(ngModel)]="objetive.image" type="file" accept="image/*" class="form-control" id="archivoImagen" name="archivoImagen" />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-cerrar" data-bs-dismiss="modal">
+                  Cerrar
+                </button>
+                <button type="submit" class="btn btn-aceptar">Guardar</button>
+              </div>
+            </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 95%; text-align: center;">
+      <div class="accordion" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false"
+              aria-controls="panelsStayOpen-collapseTwo">
+              Finalizados
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+            aria-labelledby="panelsStayOpen-headingTwo">
+            <div class="accordion-body d-flex flex-wrap">
+                <app-card (sendIdEvent)="receiveId($event)" class="col-6" *ngFor="let finish of finished" [temp]="finish"></app-card>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+              data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+              aria-controls="panelsStayOpen-collapseOne">
+              Por cumplir
+            </button>
+          </h2>
+          <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+            aria-labelledby="panelsStayOpen-headingOne">
+            <div class="accordion-body d-flex flex-wrap">
+              <app-card (sendIdEvent)="receiveId($event)" class="col-6" *ngFor="let temp of objetives" [temp]="temp"></app-card>
+            </div>
+          </div>
+        </div>
+
+      </div>
+  </div>
+</div>
+
+
+	<!-- Modal de editar -->
+	<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">
+						Editar objetivo
+					</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form (ngSubmit)="editObjetive(objetiveToEdit.id, objetiveToEdit)" enctype="multipart/form-data">
+						<div class="mb-3">
+							<label for="recipient-name" class="col-form-label">Nombre:</label>
+							<input [(ngModel)]="objetiveToEdit.name" type="text" class="form-control" id="name"
+								name="name" />
+						</div>
+						<div class="mb-3">
+							<label for="recipient-name" class="col-form-label">Descripción:</label>
+							<input [(ngModel)]="objetiveToEdit.description" type="text" class="form-control"
+								id="description" name="description" />
+						</div>
+						<div class="mb-3" style="width: 100%; display: flex">
+							<div style="width: 50%; margin-right: 20px">
+								<label for="recipient-name" class="col-form-label">Dinero actual:</label>
+								<input [(ngModel)]="objetiveToEdit.currentMoney" type="number" class="form-control"
+									id="currentMoney" name="currentMoney" />
+							</div>
+							<div style="width: 50%">
+								<label for="recipient-name" class="col-form-label">Meta de dinero:</label>
+								<input [(ngModel)]="objetiveToEdit.totalMoney" type="number" class="form-control"
+									id="totalMoney" name="totalMoney" />
+							</div>
+						</div>
+						<div class="mb-3">
+							<label for="recipient-name" class="col-form-label">Fecha límite:</label>
+							<input [(ngModel)]="objetiveToEdit.endDate" type="date" class="form-control" id="endDate"
+								name="endDate" />
+						</div>
+						<div class="mb-3">
+							<label for="recipient-name" class="col-form-label">Imagen:</label>
+							<input [(ngModel)]="objetiveToEdit.image" type="file" accept="image/*" class="form-control" id="archivoImagen" name="archivoImagen" />
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn-2 btn-cerrar" data-bs-dismiss="modal">
+								Cerrar
+							</button>
+							<button type="submit" class="btn-2 btn-aceptar">Guardar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Modal de eliminar-->
+	<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">
+						Eliminar objetivo
+					</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<b>ID: </b>{{ objetiveToEdit.id }} <b>Nombre: </b>{{ objetiveToEdit.name }}
+					<br />
+					¿Estás seguro que deseas eliminarlo? <br />
+				</div>
+				<br>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-cerrar btn-primary" data-bs-dismiss="modal">
+						Cancelar
+					</button>
+					<button (click)="deleteObjetive(objetiveToEdit.id)" type="button" class="btn-2 btn-danger"
+						data-bs-dismiss="modal">
+						Eliminar
+					</button>
+					<!-- data-bs-dismiss="modal" IMPORTANTE ESTO -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+
