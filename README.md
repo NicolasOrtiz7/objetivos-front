@@ -1,8 +1,8 @@
 # AppObjetivos
 
-Front end: Angular
-Back end: Spring boot
-Base de datos: MySQL
+- Front end: Angular
+- Back end: Spring boot
+- Base de datos: MySQL
 
 ## Características
 - Cards personalizadas de objetivos
