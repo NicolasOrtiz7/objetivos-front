@@ -5,6 +5,9 @@
 - Base de datos: MySQL
 
 ## Características
+- Back end: https://github.com/NicolasOrtiz7/objetivos-back
+
+## Características
 - Crear cartas de objetivos con nombre, descripción, imagen, tiempo y dinero límite, poder finalizar y reanudar
 - Barras de progreso de tiempo y dinero
 
