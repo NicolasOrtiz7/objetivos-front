@@ -4,7 +4,6 @@
 - Back end: Spring boot
 - Base de datos: MySQL
 
-## Características
 - Back end: https://github.com/NicolasOrtiz7/objetivos-back
 
 ## Características
