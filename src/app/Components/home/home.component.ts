@@ -57,6 +57,9 @@ export class HomeComponent implements OnInit{
           
           // Calcular y asignar el porcentaje de dinero
           element.moneyPercentage = Math.round((element.currentMoney / element.totalMoney) * 100);
+
+          // Calcular el promedio que necesita ganar por día para lograr la meta
+          element.dailyMoney = Math.round((element.totalMoney - element.currentMoney) / (element.daysLeft +1 ));
       });
       },
       err => { console.log(err) }
@@ -83,6 +86,7 @@ export class HomeComponent implements OnInit{
 
           // Calcular y asignar el porcentaje de dinero
           element.moneyPercentage = Math.round((element.currentMoney / element.totalMoney) * 100);
+          element.dailyMoney = Math.round((element.totalMoney - element.currentMoney) / (element.daysLeft +1 ));
         })
       },
       err => {console.log(err)}

@@ -15,5 +15,6 @@ export class Objetive {
     moneyPercentage:number;
     datePercentage:number;
     daysLeft:number;
+    dailyMoney: number;
 
 }
